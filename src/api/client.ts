@@ -1,5 +1,4 @@
-import { ApiResponse } from '@/types/api'
-import axios, { type AxiosResponse } from 'axios'
+import axios from 'axios'
 
 // Axios 인스턴스 생성
 const axiosInstance = axios.create({
@@ -14,15 +13,7 @@ axiosInstance.interceptors.response.use(
    *
    * @param response - Axios 응답 객체 (서버 응답 원본)
    */
-  <T>(response: AxiosResponse<ApiResponse<T>>) => {
-    // data 속성만 반환합니다.
-    if (response.data && response.data.status === 0) {
-      return response.data.data
-    }
-
-    // API 내부 에러
-    return Promise.reject(new Error(response.data.message || 'API Error'))
-  },
+  (response) => response,
 
   /**
    * HTTP 상태 코드가 2xx 범위를 벗어날 때 실행됩니다. (네트워크 에러 등)
