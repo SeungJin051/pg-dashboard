@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { DEFAULT_SORT_OPTION, TABLE_PAGE_SIZE } from '@/constants'
+import { DASHBOARD_TABLE_PAGE_SIZE, DEFAULT_SORT_OPTION } from '@/constants'
 import { Payment } from '@/types/api'
 
 /**
@@ -28,7 +28,7 @@ export const usePaymentTable = (payments: Payment[]) => {
   const [payTypeFilter, setPayTypeFilter] = useState<FilterOption>('ALL')
   const [statusFilter, setStatusFilter] = useState<FilterOption>('ALL')
 
-  const pageSize = TABLE_PAGE_SIZE
+  const pageSize = DASHBOARD_TABLE_PAGE_SIZE
 
   // 결제 수단 목록 추출 (중복 제거 및 정렬)
   const payTypes = Array.from(new Set(payments.map((p) => p.payType))).sort()
