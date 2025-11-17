@@ -10,7 +10,11 @@
     "noEmit": true,
     "types": ["vite/client"],
     "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": ["src", "routes"]
 }
