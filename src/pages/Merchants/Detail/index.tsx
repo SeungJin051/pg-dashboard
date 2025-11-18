@@ -40,6 +40,9 @@ export const MerchantDetailPage = () => {
 
   const statusVariant = MERCHANT_STATUS_BADGE_VARIANT[data.status] ?? 'default'
 
+  // 가맹점 상태 코드 한글 설명 매핑
+  const merchantStatusMap = commonCodes?.merchantStatusMap ?? {}
+
   const merchantNameMap: Record<string, string> = {
     [data.mchtCode]: data.mchtName,
   }
@@ -68,7 +71,7 @@ export const MerchantDetailPage = () => {
                   : 'bg-slate-50 text-slate-700'
             }`}
           >
-            {data.status}
+            {merchantStatusMap[data.status] ?? data.status}
           </span>
         </CardHeader>
         <CardContent className="grid gap-3 text-xs text-slate-600 sm:grid-cols-2">
@@ -100,8 +103,6 @@ export const MerchantDetailPage = () => {
       </Card>
 
       <section className="space-y-3">
-        <h2 className="px-1 text-sm font-semibold text-slate-900">가맹점 거래 내역</h2>
-
         {paymentsError || codesError ? (
           <div className="px-1 text-xs text-red-600">
             가맹점 거래 내역을 불러오는 중 오류가 발생했습니다.
