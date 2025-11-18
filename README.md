@@ -89,3 +89,10 @@ pg-dashboard
   - **UI/UX 포인트:**
     - 사용자 경험 개선을 위한 반응형을 고려(브레이크 포인트 768px)
     - 탐색 피로도를 줄이는 UX 목표
+
+
+[feature/dashboard #1](https://github.com/SeungJin051/pg-dashboard/pull/1)
+
+[feature/merchant #2](https://github.com/SeungJin051/pg-dashboard/pull/2)
+
+[feature/merchant-write #3](https://github.com/SeungJin051/pg-dashboard/pull/3)
