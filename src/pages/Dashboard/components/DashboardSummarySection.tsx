@@ -1,3 +1,4 @@
+import { StatCard } from '@/components/ui'
 import { formatAmount } from '@/utils'
 import { DashboardSummary } from '../hooks/useDashboardData'
 
@@ -18,56 +19,34 @@ export const DashboardSummarySection = ({ summary }: DashboardSummarySectionProp
       </header>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
-        {/* 총 거래 금액 */}
-        <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4">
-          <p className="text-base font-medium tracking-wide text-slate-400">총 거래 금액</p>
-          <div className="mt-2 space-y-1">
-            <p className="text-xl font-semibold text-slate-900">
-              {formatAmount(summary.totalAmountKRW)}
-              <span className="ml-1 text-xs font-normal text-slate-400">KRW</span>
-            </p>
-            <p className="text-xl font-semibold text-slate-900">
-              {formatAmount(summary.totalAmountUSD)}
-              <span className="ml-1 text-xs font-normal text-slate-400">USD</span>
-            </p>
-          </div>
-        </div>
+        {/* 총 거래 금액 (KRW + USD) */}
+        <StatCard
+          label="총 거래 금액"
+          value={
+            <div className="space-y-1">
+              <div className="text-sm text-slate-900 sm:text-base">
+                {formatAmount(summary.totalAmountKRW)}
+                <span className="ml-1 text-xs font-normal text-slate-400">KRW</span>
+              </div>
+              <div className="text-sm text-slate-900 sm:text-base">
+                {formatAmount(summary.totalAmountUSD)}
+                <span className="ml-1 text-xs font-normal text-slate-400">USD</span>
+              </div>
+            </div>
+          }
+        />
 
         {/* 총 거래 건수 */}
-        <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4">
-          <p className="text-base font-medium tracking-wide text-slate-400">총 결제</p>
-          <p className="mt-2 text-xl font-semibold text-slate-900">
-            {summary.totalCount.toLocaleString()}
-            <span className="ml-1 text-xs font-normal text-slate-400">건</span>
-          </p>
-        </div>
+        <StatCard label="총 결제" value={summary.totalCount} unit="건" color="blue" />
 
         {/* 성공 건수 */}
-        <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4">
-          <p className="text-base font-medium tracking-wide text-slate-400">결제 성공</p>
-          <p className="mt-2 text-xl font-semibold text-emerald-600">
-            {summary.successCount.toLocaleString()}
-            <span className="ml-1 text-xs font-normal text-slate-400">건</span>
-          </p>
-        </div>
+        <StatCard label="결제 성공" value={summary.successCount} unit="건" color="emerald" />
 
         {/* 실패 건수 */}
-        <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4">
-          <p className="text-base font-medium tracking-wide text-slate-400">결제 실패</p>
-          <p className="mt-2 text-xl font-semibold text-rose-500">
-            {summary.failedCount.toLocaleString()}
-            <span className="ml-1 text-xs font-normal text-slate-400">건</span>
-          </p>
-        </div>
+        <StatCard label="결제 실패" value={summary.failedCount} unit="건" color="rose" />
 
         {/* 취소 건수 */}
-        <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4">
-          <p className="text-base font-medium tracking-wide text-slate-400">환불 완료</p>
-          <p className="mt-2 text-xl font-semibold text-rose-400">
-            {summary.cancelledCount.toLocaleString()}
-            <span className="ml-1 text-xs font-normal text-slate-400">건</span>
-          </p>
-        </div>
+        <StatCard label="환불 완료" value={summary.cancelledCount} unit="건" color="amber" />
       </div>
     </section>
   )
