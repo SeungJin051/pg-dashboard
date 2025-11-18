@@ -28,14 +28,19 @@ export const StatCard = ({
   className = '',
 }: StatCardProps) => {
   const valueColorClass = colorClasses[color]
+  const isSimpleValue = typeof value === 'number' || typeof value === 'string'
 
   return (
     <div className={`rounded-2xl border border-slate-200 bg-white px-5 py-4 ${className}`}>
       <p className="text-base font-medium tracking-wide text-slate-400">{label}</p>
-      <p className={`mt-2 text-xl font-semibold ${valueColorClass}`}>
-        {typeof value === 'number' ? value.toLocaleString() : value}
-        {unit && <span className="ml-1 text-xs font-normal text-slate-400">{unit}</span>}
-      </p>
+      {isSimpleValue ? (
+        <p className={`mt-2 text-lg font-semibold sm:text-xl ${valueColorClass}`}>
+          {typeof value === 'number' ? value.toLocaleString() : value}
+          {unit && <span className="ml-1 text-xs font-normal text-slate-400">{unit}</span>}
+        </p>
+      ) : (
+        <div className={`mt-2 text-sm font-semibold sm:text-base ${valueColorClass}`}>{value}</div>
+      )}
     </div>
   )
 }

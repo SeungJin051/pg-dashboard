@@ -1,4 +1,4 @@
-import { Select, Badge, EmptyState, Pagination } from '@/components/ui'
+import { Select, Badge, EmptyState, Pagination, Card } from '@/components/ui'
 import { Payment } from '@/types/api'
 import { formatDate, formatAmount, getPaymentStatusBadgeVariant } from '@/utils'
 import { usePaymentTable, SortOption } from '../hooks/usePaymentTable'
@@ -96,10 +96,7 @@ export const DashboardMerchantTableSection = ({
       {/* 모바일: 카드 리스트 */}
       <div className="space-y-3 md:hidden">
         {currentRows.map((row: Payment) => (
-          <div
-            key={row.paymentCode}
-            className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-xs text-slate-700"
-          >
+          <Card key={row.paymentCode} className="px-4 py-3 text-xs text-slate-700">
             <div className="mb-2 flex items-center justify-between">
               <span className="font-medium text-slate-900">{row.paymentCode}</span>
               <span className="text-sm text-slate-400">{formatDate(row.paymentAt)}</span>
@@ -115,7 +112,7 @@ export const DashboardMerchantTableSection = ({
                 <span className="text-sm text-slate-400">금액</span>
                 <div className="text-sm font-semibold text-slate-900">
                   {formatAmount(row.amount)}
-                  <span className="text-sm text-slate-400">{row.currency}</span>
+                  <span className="ml-1 text-xs text-slate-400">{row.currency}</span>
                 </div>
               </div>
             </div>
@@ -125,7 +122,7 @@ export const DashboardMerchantTableSection = ({
                 {paymentStatusMap[row.status] ?? row.status}
               </Badge>
             </div>
-          </div>
+          </Card>
         ))}
         {currentRows.length === 0 && <EmptyState message="표시할 거래 내역이 없습니다." />}
       </div>
