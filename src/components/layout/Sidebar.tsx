@@ -6,7 +6,7 @@ export const Sidebar = () => {
 
   return (
     // 데스크탑 사이드바
-    <aside className="hidden md:flex h-screen w-60 flex-col border-r border-gray-200 bg-white px-4 py-6">
+    <aside className="hidden md:flex w-60 flex-col border-r border-gray-200 bg-white px-4 py-6">
       <nav className="flex flex-col gap-1">
         {paths.map((path) => {
           const isActive = location.pathname === path.to
