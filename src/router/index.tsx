@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import { DashboardPage } from '@/pages/Dashboard'
-import { MerchantsPage } from '@/pages/Merchants'
-import { MerchantDetailPage } from '@/pages/Merchants/Detail'
+import { MerchantsPage, MerchantDetailPage } from '@/pages/Merchants'
 
 export function AppRoutes() {
   return (
